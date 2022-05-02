@@ -1,4 +1,4 @@
-/* 11: We are going to remove the black thingy from the circle */
+/* 11: removing and adding the background in the middle of the circle */
 
 .circular-chart {
   display: block;
@@ -24,4 +24,11 @@
 
 input {
   color: rgb(212, 0, 0);
+}
+
+.svg-circle-text {
+  font-size: 2rem;
+  text-anchor: middle;
+  fill: #fff;
+  font-weight: bold;
 }

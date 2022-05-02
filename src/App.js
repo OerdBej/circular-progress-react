@@ -3,12 +3,24 @@ import "./App.css";
 import ProgressBar from "./components/ProgressBar/ProgressBar";
 
 const App = () => {
-  //14: setting up the useState in order to make the change from the user
+  //19:
+  const [color, setColor] = useState(0);
+  const colorArray = [
+    "#7ea9e1",
+    "#ed004f",
+    "#00fcf0",
+    "#d2fc00",
+    "#7bff00",
+    "#fa6900",
+  ];
 
+  //20:
+  const randomColor = () => {
+    return colorArray[Math.floor(Math.random() * colorArray.length)];
+  };
+  //14:
   const [progress, setProgress] = useState(0);
-
-  //15: this is the function from the button that graps the event of the user and then we get the value and update it and using the states. So now the progress in the State props it changes from onChange function to the first state.
-
+  //15:
   const onChange = (e) => {
     if (e.target.value) {
       let progress = parseInt(e.target.value, 10);
@@ -16,34 +28,38 @@ const App = () => {
         progress = 100;
       }
       setProgress(progress);
+      const randomProgressValue = randomColor();
+      setColor(randomProgressValue);
     } else {
       setProgress(0);
     }
   };
 
-  //18: Create the function from the button randomize event.Whenever that is clicked we set up a random value.
-
+  //18:
   const randomProgressValue = () => {
     const progressValue = Math.floor(Math.random() * 101);
     setProgress(progressValue);
+    const randomProgressValue = randomColor();
+    setColor(randomProgressValue);
   };
 
-  //10: setting up the props for ProgressBar. progress as intiger or decimale number.the strokeWidth is the width of the circle
-
+  //10:
   const state = {
     size: 250,
     progress: progress,
-    // progress: 40, => it changes now from onChange method, its settin
+    // progress: 40,
     strokeWidth: 15,
     circleOneStroke: "#d9edfe",
-    circleTwoStroke: "#7ea9e1",
+    circleTwoStroke: color,
   };
 
-  //11: we are going to pass the object into the component and distructure it. We can do it with the destructure mode or we can do it more "manually". We can use it in this way or in the more old fashioned way and they are totally the same.So we defined it as an object and destructure it in the components and passing it as a state and getting this with props to the other page. So we can change the value inside of the object and we are going to add a new proprety and we can added in this.
+  //11:
 
+  //17:
   return (
     <div className='App'>
       <div className='App-header'>
+        <h1>Progress</h1>
         <ProgressBar {...state} />
         {/* <ProgressBar size="250" progress={40}/> */}
         <p>
